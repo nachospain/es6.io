@@ -30,6 +30,20 @@
 </ul>
 
 <script>
+   const items = Array.from(document.querySelectorAll('[data-time]'));
+   const filtered = items
+   .filter(item => item.textContent.includes('Flexbox'))
+   // filter per flexbox content
+   .map(item => item.dataset.time)
+   //  it returns a node list where dataset will be an attribute so we have to select it
+   .map(time => {
+     const parts = time.split(':').map(part => parseFloat(part));
+     return (parts[0] * 60 ) + parts[1];
+   })
+   //  then we have to create a block function where first we separate between : and parsefloat to seconds
+   .reduce(( x, y) => x + y , 0)
+
+
 
   // Select all the list items on the page and convert to array
 
