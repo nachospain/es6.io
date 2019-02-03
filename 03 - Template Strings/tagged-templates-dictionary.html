@@ -21,9 +21,34 @@
     CSS: 'Cascading Style Sheets',
     JS: 'JavaScript'
   };
+ function abreviations(strings, ...values ) {
+   const abbr = values.map( value => {
+
+     if(dict[value]) {
+       return `<abbr title="${dict[value]}">${value}</abbr>`
+     }
+     return value;
+   });
+    return strings.reduce((sentence, string, i) => {
+      return `${sentence} ${string} ${abbr[i] || ''}`
+    },'Hello, ')
+
+ };
+
+
+
+
+
+
+
 
   const first = 'Wes';
   const last = 'Bos';
+  const sentence = abreviations`my name is ${first} ${last} and I love ${'HTML'} ${'CSS'} and ${'JS'}`
+  const bio = document.querySelector('.bio');
+  const p = document.createElement('p');
+  p.innerHTML = sentence;
+  bio.appendChild(p);
 
 </script>
 </body>
